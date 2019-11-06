@@ -12,7 +12,7 @@
 unsigned long lastMillis = 0;
 
 /// WIFI & MQTT CONFIG
-IPAddress mqttServer(93, 100, 234, 254);
+IPAddress mqttServer(192, 168, 1, 100);
 const char* wifiNetwork = "schmeeow";
 const char* wifiPassword = "12345678";
 const char* mqttClientName = "MQTT Clock v0.99";
