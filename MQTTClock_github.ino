@@ -24,17 +24,17 @@ const int statusDisplayTime = 500; // Сколько показывать соо
 const int defaulBrightness = 0; // Яркость дисплеев по умолчанию (0~7)
 
 // НОМЕРА GPIO КОНТАКТОВ ДИСПЛЕЕВ TM1637
-#define leftDisplayCLK 13 // Левый дисплей CLK // D7
-#define leftDisplayDIO 12 // Левый дисплей DIO // D6
-#define midDisplayCLK 14  // Средний дисплей CLK // D5
-#define midDisplayDIO 2   // Средний дисплей DIO // D4
-#define rightDisplayCLK 0 // Правый дисплей CLK // D3
-#define rightDisplayDIO 4 // Правый дисплей DIO // D2
+#define leftDisplayCLK 2 // Левый дисплей CLK // D4
+#define leftDisplayDIO 0 // Левый дисплей DIO // D3
+#define midDisplayCLK 4  // Средний дисплей CLK // D2
+#define midDisplayDIO 5   // Средний дисплей DIO // D1
+#define rightDisplayCLK 16 // Правый дисплей CLK // D0
+#define rightDisplayDIO 14 // Правый дисплей DIO // D5
 
 //  НОМЕРА GPIO КОНТАКТОВ RGB-СВЕТОДИОДА
-#define redPin 16 // Красный // D7
-#define greenPin 5 // Зеленый  // D6
-#define bluePin 15 // Синий // D5
+#define redPin 15 // Красный // D8
+#define greenPin 13 // Зеленый  // D5
+#define bluePin 12 // Синий // D6
 
 // НАБОРЫ СИМВОЛОВ ДЛЯ ДИСПЛЕЕВ
 const uint8_t SEG_CONN[] = { SEG_A | SEG_F | SEG_E | SEG_D, SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F, SEG_A | SEG_B | SEG_C | SEG_F | SEG_E, SEG_A | SEG_B | SEG_C | SEG_F | SEG_E };
@@ -83,7 +83,7 @@ void callback(char* topic, byte* payload, unsigned int length) // Функция
  
   displayLeft.clear(); displayMiddle.clear(); displayRight.clear(); // Очистка дисплеев
 
-  if (ambientLight < 8) { setBrightnessAll(0); } else if (ambientLight > 20) { setBrightnessAll(7); } else { setBrightnessAll(4); } // Настройка яркости дисплеев по фоновой освещенности
+  if (ambientLight < 10) { setBrightnessAll(0); } else if (ambientLight > 20) { setBrightnessAll(7); } else { setBrightnessAll(4); } // Настройка яркости дисплеев по фоновой освещенности
   // if (hours <= 8 || hours >= 23) { setBrightnessAll(0); } else if (hours >= 12 && hours <= 16) { setBrightnessAll(7); } else { setBrightnessAll(4); } // Настройка яркости дисплеев по времени
 
   displayMiddle.showNumberDecEx(hours * 100 + minutes, 0b01000000, true, 4, 0); // Вывод времени на центральный дисплей
