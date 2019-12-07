@@ -160,8 +160,8 @@ void setup() {
   WiFi.begin(wifiNetwork, wifiPassword); // Пытаемся подключиться к WiFi
   WiFi.softAPdisconnect(true);  // Отключаем встроенную точку доступа  
   // Далее идут qункции для обновления прошивки Over-The-Air
-  //ArduinoOTA.setPort(OTAUpdatePort); // Раскомментируйте, если нужно установить порт
-  //ArduinoOTA.setHostname(OTAUserName); // Раскомментируйте, если нужно установить имя клиента
+  ArduinoOTA.setPort(OTAUpdatePort); // Раскомментируйте, если нужно установить порт
+  ArduinoOTA.setHostname(OTAUserName); // Раскомментируйте, если нужно установить имя клиента
   //ArduinoOTA.setPassword(OTAUserPassword); // Раскомментируйте, если нужно установить пароль для обновления
   ArduinoOTA.onStart([]() { setBrightnessAll(defaulBrightness); displayPhrase(SEG_LINE, SEG_UPDATE, SEG_LINE); delay(statusDisplayTime); displayPhrase(SEG_CODE, SEG_LOAD, SEG_INIT); delay(statusDisplayTime); if (ArduinoOTA.getCommand() == U_FLASH) { displayPhrase(SEG_UPDATE, SEG_TYPE, SEG_CODE); } else { displayPhrase(SEG_UPDATE, SEG_TYPE, SEG_FILE); } delay(statusDisplayTime);  });
   ArduinoOTA.onEnd([]() { displayPhrase(SEG_CODE, SEG_LOAD, SEG_DONE); delay(statusDisplayTime); displayPhrase(SEG_CODE, SEG_SAVE, SEG_DONE); delay(statusDisplayTime*2); ESP.restart(); });
